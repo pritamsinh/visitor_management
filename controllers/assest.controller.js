@@ -2,35 +2,70 @@ const models = require('../models')
 
 //
 
-const addAssest = async (req, res) => {
-    let info ={
-        id: req.body.id,
+function add (req, res){
+    const assest = {
         name: req.body.name,
         department: req.body.department,
         status: req.body.status,
-        remark: req.body.remark
+        remark: req.body.remark,
+        aId: req.body.aid
     }
-    const assest = await Assest.create(info)
-    res.status(200).send(assest)
-    console.log(assest)
+    models.Assests.create(assest).then(result => {
+        res.status(201).json({
+            message: "assest created sucessfully",
+            post: result
+        });
+     }).catch(error => {
+        res.status(500).json({
+            message: "something went wrong",
+            error: error
+        });
+     });
 }
 
 //
-const updateAssest = async (req, res) => {
-    let id = req.params.id
-    const assest = await Assest.update(req.body, {where: {id: id}})
-    res.status(200).send(assest)
+function update (req, res) {
+    const id = req.params.id;
+    const updateAssest = { name: req.body.name,
+        department: req.body.department,
+        status: req.body.status,
+        remark: req.body.remark,
+        aId: req.body.aid
+
+    }
+    models.Assests.update(updateAssest, {where: {id: id}}).then(result => {
+        res.status(201).json({
+            message: "assest updated sucessfully",
+            post: updateAssest
+        });
+    }).catch(error => {
+        res.status(500).json({
+            message: "something went wrong",
+            error: error
+        });
+    });
 }
 
-//
-const deleteAssest = async (req, res) => {
-    let id = req.params.id
-    await Assest.destroy({ where: { id: id}})
-    res.status(200).send('assest is deleted !')
+
+// 
+function destroy(req, res){
+    const id = req.params.id;
+    models.Assests.destroy({where: {id: id}}).then(result => {
+        res.status(201).json({
+            message: "assest deleted sucessfully",
+            post: deleted
+        });
+    }).catch(error => {
+        res.status(500).json({
+            message: "something went wrong",
+            error: error
+        });
+    });
 }
 
 module.exports = {
-    addAssest,
-    updateAssest,
-    deleteAssest
+    add: add,
+    update: update,
+    destroy: destroy
+    
 }
