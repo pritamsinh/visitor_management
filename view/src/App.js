@@ -1,13 +1,12 @@
+import logo from './logo.svg';
 import './App.css';
-import Create from './components/Create';
-
+import Greet from './components/Greet'
+import Welcome from './components/Welcome'
 function App() {
   return (
-    <div className="main">		 
-	  <h2 className="main-header">React Crud Operations</h2>
-	  <div>
-		<Create/>
-	  </div>
+    <div className="App">
+      <Greet/>
+      <Welcome/>
     </div>
   );
 }
