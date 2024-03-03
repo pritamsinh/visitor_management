@@ -1,9 +1,5 @@
 {
-<<<<<<<< HEAD:view/login-signup/package.json
-  "name": "login-signup",
-========
   "name": "view",
->>>>>>>> 2191e1b5d1b87b56db33472f3ab18e25bfa44830:view/package.json
   "version": "0.1.0",
   "private": true,
   "dependencies": {
