@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './LoginSignup.css'
+
 
 import user_icon from '../Assests/person.png';
 import email_icon from '../Assests/email.png';
@@ -76,7 +78,7 @@ const LoginSignup = () => {
       ) : null}
 
       <div className="submit-container">
-        <button onClick={handleGetUserData}>Get User Data</button>
+        
         <div className={action === "login" ? "submit gray" : "submit"} onClick={() => { setAction("login") }}>Login</div>
         <div className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up") }}>Sign Up</div>
       </div>
