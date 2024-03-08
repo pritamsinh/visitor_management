@@ -1,43 +1,43 @@
 
-import './App.css';
+import { useEffect, useState } from 'react';
+import UserData from './Component/UserData';
+const API = "http://localhost:4000/visitor";
 
-function App() {
-  return (
-   
-<div className="App">
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Age</th>
-			<th>Gender</th>
-      <th>address</th>
-      <th>purpose</th>
-		</tr>
-		<tr>
-			<td>Anom</td>
-			<td>19</td>
-			<td>Male</td>
-      <td> vadodara</td>
-      <td> internship </td>
-		</tr>
-		<tr>
-			<td>Megha</td>
-			<td>19</td>
-			<td>Female</td>
-      <td>xyz society</td>
-      <td>job interview</td>
-		</tr>
-		<tr>
-			<td>Subham</td>
-			<td>25</td>
-			<td>Male</td>
-      <td>xyz area</td>
-      <td>technician </td>
-		</tr>
-	</table>
-</div>
-);
+
+const App = () => {
+	const [users, setUsers] = useState( []);
+
+	const fetchUsers = async (url) => {
+		try {
+			const res = await fetch(url);
+			const data = await res.json();
+			if(data.length > 0){
+				setUsers(data);
+			}
+			console.log(data);
+		} catch (e) {
+			console.error(e)
+		}
+	}
+	useEffect(() => {
+		fetchUsers(API);
+	},)
+
+	return<>
+		<table>
+			<thead>
+				<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>Purpose</th>
+				<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<UserData users={users} />
+			</tbody>
+		</table>
+	</>
 }
-
-
-export default App;
+export default App
