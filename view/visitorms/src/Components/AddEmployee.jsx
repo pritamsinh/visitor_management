@@ -5,15 +5,17 @@ import { useNavigate } from "react-router-dom";
 const AddEmployee = () => {
   const [employee, setEmployee] = useState({
     name: "",
+    image: "",
+    phone: "",
     email: "",
     password: "",
-    salary: "",
     address: "",
+    designation: "",
+    salary: "",
     category_id: "",
-    image: "",
   });
   const [category, setCategory] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -29,26 +31,29 @@ const AddEmployee = () => {
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const formData = new FormData();
-    formData.append('name', employee.name);
-    formData.append('email', employee.email);
-    formData.append('password', employee.password);
-    formData.append('address', employee.address);
-    formData.append('salary', employee.salary);
-    formData.append('image', employee.image);
-    formData.append('category_id', employee.category_id);
+    formData.append("name", employee.name);
+    formData.append("image", employee.image);
+    formData.append("phone", employee.phone);
+    formData.append("email", employee.email);
+    formData.append("password", employee.password);
+    formData.append("address", employee.address);
+    formData.append("designation", employee.designation);
+    formData.append("salary", employee.salary);
+    formData.append("category_id", employee.category_id);
 
-    axios.post('http://localhost:3000/auth/add_employee', formData)
-    .then(result => {
-        if(result.data.Status) {
-            navigate('/dashboard/employee')
+    axios
+      .post("http://localhost:3000/auth/add_employee", formData)
+      .then((result) => {
+        if (result.data.Status) {
+          navigate("/dashboard/employee");
         } else {
-            alert(result.data.Error)
+          alert(result.data.Error);
         }
-    })
-    .catch(err => console.log(err))
-  }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center mt-3">
@@ -56,7 +61,7 @@ const AddEmployee = () => {
         <h3 className="text-center">Add Employee</h3>
         <form className="row g-1" onSubmit={handleSubmit}>
           <div className="col-12">
-            <label for="inputName" className="form-label">
+            <label htmlFor="inputName" className="form-label">
               Name
             </label>
             <input
@@ -70,7 +75,36 @@ const AddEmployee = () => {
             />
           </div>
           <div className="col-12">
-            <label for="inputEmail4" className="form-label">
+            <label htmlFor="inputImage" className="form-label">
+              Image
+            </label>
+            <input
+              type="file"
+              className="form-control rounded-0"
+              id="inputImage"
+              name="image"
+              onChange={(e) =>
+                setEmployee({ ...employee, image: e.target.files[0] })
+              }
+            />
+          </div>
+          <div className="col-12">
+            <label htmlFor="phone" className="form-label">
+              Phone
+            </label>
+            <input
+              type="text"
+              className="form-control rounded-0"
+              id="phone"
+              placeholder="Enter Phone"
+              autoComplete="off"
+              onChange={(e) =>
+                setEmployee({ ...employee, phone: e.target.value })
+              }
+            />
+          </div>
+          <div className="col-12">
+            <label htmlFor="inputEmail4" className="form-label">
               Email
             </label>
             <input
@@ -85,7 +119,7 @@ const AddEmployee = () => {
             />
           </div>
           <div className="col-12">
-            <label for="inputPassword4" className="form-label">
+            <label htmlFor="inputPassword4" className="form-label">
               Password
             </label>
             <input
@@ -97,22 +131,9 @@ const AddEmployee = () => {
                 setEmployee({ ...employee, password: e.target.value })
               }
             />
-            <label for="inputSalary" className="form-label">
-              Salary
-            </label>
-            <input
-              type="text"
-              className="form-control rounded-0"
-              id="inputSalary"
-              placeholder="Enter Salary"
-              autoComplete="off"
-              onChange={(e) =>
-                setEmployee({ ...employee, salary: e.target.value })
-              }
-            />
           </div>
           <div className="col-12">
-            <label for="inputAddress" className="form-label">
+            <label htmlFor="inputAddress" className="form-label">
               Address
             </label>
             <input
@@ -127,27 +148,51 @@ const AddEmployee = () => {
             />
           </div>
           <div className="col-12">
-            <label for="category" className="form-label">
-              Category
-            </label>
-            <select name="category" id="category" className="form-select"
-                onChange={(e) => setEmployee({...employee, category_id: e.target.value})}>
-              {category.map((c) => {
-                return <option value={c.id}>{c.name}</option>;
-              })}
-            </select>
-          </div>
-          <div className="col-12 mb-3">
-            <label className="form-label" for="inputGroupFile01">
-              Select Image
+            <label htmlFor="designation" className="form-label">
+              Designation
             </label>
             <input
-              type="file"
+              type="text"
               className="form-control rounded-0"
-              id="inputGroupFile01"
-              name="image"
-              onChange={(e) => setEmployee({...employee, image: e.target.files[0]})}
+              id="designation"
+              placeholder="Enter Designation"
+              autoComplete="off"
+              onChange={(e) =>
+                setEmployee({ ...employee, designation: e.target.value })
+              }
             />
+          </div>
+          <div className="col-12">
+            <label htmlFor="inputSalary" className="form-label">
+              Salary
+            </label>
+            <input
+              type="text"
+              className="form-control rounded-0"
+              id="inputSalary"
+              placeholder="Enter Salary"
+              autoComplete="off"
+              onChange={(e) =>
+                setEmployee({ ...employee, salary: e.target.value })
+              }
+            />
+          </div>
+          <div className="col-12">
+            <label htmlFor="category" className="form-label">
+              Category
+            </label>
+            <select
+              name="category"
+              id="category"
+              className="form-select"
+              onChange={(e) =>
+                setEmployee({ ...employee, category_id: e.target.value })
+              }
+            >
+              {category.map((c) => {
+                return <option key={c.id} value={c.id}>{c.name}</option>;
+              })}
+            </select>
           </div>
           <div className="col-12">
             <button type="submit" className="btn btn-primary w-100">

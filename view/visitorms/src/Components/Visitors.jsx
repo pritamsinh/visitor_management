@@ -30,9 +30,12 @@ const Visitors = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
+              <th>Email</th>    
+              <th>Address</th>
               <th>Phone</th>
+              <th>Resume</th>
               <th>Purpose</th>
+              <th>Image</th>
               </tr>
           </thead>
           <tbody>

@@ -43,8 +43,10 @@ const Employee = () => {
             <tr>
               <th>Name</th>
               <th>Image</th>
+              <th>Phone</th>
               <th>Email</th>
               <th>Address</th>
+              <th>Designation</th>
               <th>Salary</th>
               <th>Action</th>
             </tr>

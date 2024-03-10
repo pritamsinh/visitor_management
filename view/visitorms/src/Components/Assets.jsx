@@ -9,7 +9,7 @@ const Assets = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/visitor/5")
+      .get("http://localhost:3000/assets")
       .then((result) => {
         if (result.data.Status) {
           setEmployee(result.data.Result);
@@ -34,8 +34,8 @@ const Assets = () => {
       <div className="d-flex justify-content-center">
         <h3>Assets List</h3>
       </div>
-      <Link to="/dashboard/add_employee" className="btn btn-success">
-        Add Assest
+      <Link to="/dashboard/add_assets" className="btn btn-success">
+        Add Assets
       </Link>
       <div className="mt-3">
         <table className="table">
@@ -49,12 +49,12 @@ const Assets = () => {
             </tr>
           </thead>
           <tbody>
-            {assets.map((a) => (
+            {assets.map((e) => (
               <tr>
-                <td>{a.name}</td>
-                <td>{a.department}</td>
-                <td>{a.status}</td>
-                <td>{a.remark}</td>
+                <td>{e.name}</td>
+                <td>{e.department}</td>
+                <td>{e.status}</td>
+                <td>{e.remark}</td>
                 <td>
                   <Link
                     to={`/dashboard/edit_employee/` + e.id}
