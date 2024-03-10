@@ -6,6 +6,19 @@ function add2 (req, res){
         date: req.body.date,
         purpose: req.body.purpose
     }
+    const schema = {
+        date: { type: "date", optional: false, max: "100" },
+        purpose: { type: "string", optional: false, max: "100" }
+    }
+    const v = new Validator();
+    const validationResponse = v.validate(assestacq, schema);
+    if (validationResponse !== true) {
+        return res.status(400).json({
+            message: "Validation failed!!!",
+            errors: validationResponse
+        })
+    }
+
     models.Assestacq.create(assestacq).then(result => {
         res.status(201).json({
             message: "assest acquired by someone sucessfully",
