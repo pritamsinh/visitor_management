@@ -1,11 +1,10 @@
-
 import { useEffect, useState } from 'react';
 import UserData from './Component/UserData';
 const API = "http://localhost:4000/visitor";
 
 
 const App = () => {
-	const [users, setUsers] = useState( []);
+	const [users, setUsers] = useState([]);
 
 	const fetchUsers = async (url) => {
 		try {
