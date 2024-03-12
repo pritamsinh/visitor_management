@@ -75,7 +75,7 @@ const Dashboard = () => {
                   to="/dashboard/visitors"
                   className="nav-link px-0 align-middle text-white"
                 >
-                  <i className="fs-4 bi-columns ms-2"></i>
+                  <i className="fs-4 bi-person ms-2"></i>
                   <span className="ms-2 d-none d-sm-inline">Visitors</span>
                 </Link>
               </li>
