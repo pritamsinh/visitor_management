@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Visitors = () => {
-  const [visitor, setEmployee] = useState([]);
+  const [Visitors, setVisitors] = useState([]);
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -30,16 +30,14 @@ const Visitors = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>    
-              <th>Address</th>
+              <th>Email</th>       
               <th>Phone</th>
-              <th>Resume</th>
               <th>Purpose</th>
-              <th>Image</th>
+              
               </tr>
           </thead>
           <tbody>
-            {visitor.map((v) => (
+            {Visitors.map((v) => (
               <tr>
                 <td>{v.name}</td>
                 <td>{v.email}</td>

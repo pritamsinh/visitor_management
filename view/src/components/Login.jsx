@@ -7,10 +7,8 @@ const Login = () => {
     const [values, setValues] = useState({
         email: '',
         password: ''
-        
-    })
-    const navigate = useNavigate()
-    axios.defaults.withCredentials = true;  
+    });
+    const navigate = useNavigate()    
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(values)
@@ -20,7 +18,7 @@ const Login = () => {
                 localStorage.setItem("valid", true)
                 navigate('/dashboard')
             } else {
-                setError(result.data.Error)
+                console.error("Something went wrong");
             }
         })
         .catch(err => console.log(err))
@@ -53,4 +51,3 @@ const Login = () => {
 }
 
 export default Login
-

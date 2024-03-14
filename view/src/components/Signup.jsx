@@ -15,7 +15,7 @@ const Signup = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/employee/signup', values)
+        axios.post('http://localhost:3000/employee/sign-up', values)
             .then(result => {
                 if (result.data.signupStatus) {
                     navigate('/login');
