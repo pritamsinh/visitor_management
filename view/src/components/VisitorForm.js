@@ -5,7 +5,7 @@ function VisitorForm() {
     const [visitorData, setVisitorData] = useState({
         name: '',
         email: '',
-        phone: 0,
+        phone: '',
         purpose: ''
     });
 
@@ -89,7 +89,7 @@ function VisitorForm() {
                                 <label htmlFor="phone" className='font-bold'>Contact Number</label>
                                 <input type='tel'
                                     placeholder='Enter your phone number' name='phone'
-                                    className='ring-1 ring-gray-400 w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-teal-300 mt-2' pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" onChange={handleInputChange}></input>
+                                    className='ring-1 ring-gray-400 w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-teal-300 mt-2' onChange={handleInputChange}></input>
                             </div>
                             <div>
                                 <label htmlFor="purpose" className='font-bold'>Purpose</label>
