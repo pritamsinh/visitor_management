@@ -27,10 +27,22 @@ const employeeRoute = require('./routes/employee');
 const visitorRoute = require('./routes/visitor');
 const assestsRoute = require('./routes/assests')
 const assestacqRoute = require('./routes/assestacq')
-app.use(cors())
+// app.use(cors())
+// Define CORS options
+const corsOptions = {
+    origin: 'http://localhost:5173', // Replace with your actual frontend domain
+    credentials: true // Allow credentials
+  };
+  
+  // Use CORS middleware with options
+  app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/employee", employeeRoute);
 app.use("/visitor", visitorRoute);
 app.use("/assests", assestsRoute);
 app.use("/assestacq", assestacqRoute);
+const PORT =  3000;
+app.listen(3000, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
 module.exports = app;

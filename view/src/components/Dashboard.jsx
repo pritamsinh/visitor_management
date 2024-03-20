@@ -54,15 +54,6 @@ const Dashboard = () => {
               </li>
               <li className="w-100">
                 <Link
-                  to="/dashboard/category"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-columns ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Category</span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
                   to="/dashboard/assets"
                   className="nav-link px-0 align-middle text-white"
                 >

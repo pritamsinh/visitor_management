@@ -7,22 +7,25 @@ const Signup = () => {
     const [values, setValues] = useState({
         name: '',
         email: '',
-        phone: '',
         password: '',
+        phone: '',        
         designation: ''
     });
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/employee/signup', values)
-            .then(result => {
-                if (result.data.signupStatus) {
-                    navigate('/login');
-                } else {
-                    console.error(result.data.error);
-                }
-            })
+        axios.post('http://localhost:3000/employee/sign-up', values)
+        .then(result => {
+            console.log("Server Response:", result.data); 
+            if(result.data.message === 'Authentication successful!!') {
+                localStorage.setItem("valid", true)
+                navigate('/login')
+            } else {
+                console.error("Something went wrong:", result.data.message);
+                // Optionally, you can handle other error cases here
+            }
+        })
             .catch(err => console.error(err));
     };
 
@@ -42,15 +45,16 @@ const Signup = () => {
                             onChange={(e) => setValues({ ...values, email: e.target.value })} className='form-control rounded-0' />
                     </div>
                     <div className='mb-3'>
-                        <label htmlFor="phone"><strong>Phone:</strong></label>
-                        <input type="tel" name='phone' autoComplete='off' placeholder='Enter Phone'
-                            onChange={(e) => setValues({ ...values, phone: e.target.value })} className='form-control rounded-0' />
-                    </div>
-                    <div className='mb-3'>
                         <label htmlFor="password"><strong>Password:</strong></label>
                         <input type="password" name='password' autoComplete='off' placeholder='Enter Password'
                             onChange={(e) => setValues({ ...values, password: e.target.value })} className='form-control rounded-0' />
                     </div>
+                    <div className='mb-3'>
+                        <label htmlFor="phone"><strong>Phone:</strong></label>
+                        <input type="tel" name='phone' autoComplete='off' placeholder='Enter Phone'
+                            onChange={(e) => setValues({ ...values, phone: e.target.value })} className='form-control rounded-0' />
+                    </div>
+                   
                     <div className='mb-3'>
                         <label htmlFor="designation"><strong>Designation:</strong></label>
                         <input type="text" name='designation' autoComplete='off' placeholder='Enter Designation'
