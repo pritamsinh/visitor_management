@@ -2,6 +2,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    const phoneValidationRegex = /\d{3}-\d{3}-\d{4}/ ;
+
     await queryInterface.createTable('Visitors', {
       id: {
         allowNull: false,
@@ -16,7 +18,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       phone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
+        validate: {
+            validator: function(v) {
+                return phoneValidationRegex.test(v); 
+            },
+        }
       },
       purpose: {
         type: Sequelize.TEXT
