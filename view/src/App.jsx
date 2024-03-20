@@ -1,7 +1,7 @@
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Employeedashboard from './Components/Employeedashboard'
+import Employeedashboard from './components/Employeedashboard'
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import Home from './components/Home'
