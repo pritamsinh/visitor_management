@@ -2,19 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AddAssets = () => {
-  const [asset, setAsset] = useState({
+const AddAssests = () => {
+  const [assests, setassests] = useState({
     name: "",
-    status: "",
-    category: "",
+    department: "",
+    status: "",    
     remark: "",
+    aId: "" 
   });
-  const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/auth/category")
+      .post("http://localhost:3000/assests/add")
       .then((result) => {
         if (result.data.Status) {
           setCategories(result.data.Result);
@@ -28,16 +28,17 @@ const AddAssets = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("name", asset.name);
-    formData.append("status", asset.status);
-    formData.append("category", asset.category);
-    formData.append("remark", asset.remark);
+    formData.append("name", assests.name);
+    formData.append("department", assests.department);
+    formData.append("status", assests.status);   
+    formData.append("remark", assests.remark);
+    formData.append("aId", assests.aId); // Added aId to form data
 
     axios
-      .post("http://localhost:3000/auth/add_asset", formData)
+      .post("http://localhost:3000/assests/add", formData)
       .then((result) => {
         if (result.data.Status) {
-          navigate("/dashboard/assets");
+          navigate("/dashboard/assests");
         } else {
           alert(result.data.Error);
         }
@@ -57,10 +58,23 @@ const AddAssets = () => {
             <input
               type="text"
               className="form-control rounded-0"
-              id="inputName"
+              id="name"
               placeholder="Enter Name"
-              value={asset.name}
-              onChange={(e) => setAsset({ ...asset, name: e.target.value })}
+              value={assests.name}
+              onChange={(e) => setassests({ ...assests, name: e.target.value })}
+            />
+          </div>
+          <div className="col-12">
+            <label htmlFor="inputDepartment" className="form-label">
+              Department
+            </label>
+            <input
+              type="text"
+              className="form-control rounded-0"
+              id="department"
+              placeholder="Enter Department"
+              value={assests.department}
+              onChange={(e) => setassests({ ...assests, department: e.target.value })}
             />
           </div>
           <div className="col-12">
@@ -70,33 +84,13 @@ const AddAssets = () => {
             <input
               type="text"
               className="form-control rounded-0"
-              id="inputStatus"
+              id="status"
               placeholder="Enter Status"
-              value={asset.status}
-              onChange={(e) => setAsset({ ...asset, status: e.target.value })}
+              value={assests.status}
+              onChange={(e) => setassests({ ...assests, status: e.target.value })}
             />
           </div>
-          <div className="col-12">
-            <label htmlFor="category" className="form-label">
-              Category
-            </label>
-            <select
-              name="category"
-              id="category"
-              className="form-select"
-              value={asset.category}
-              onChange={(e) =>
-                setAsset({ ...asset, category: e.target.value })
-              }
-            >
-              <option value="">Select Category</option>
-              {categories.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          
           <div className="col-12">
             <label htmlFor="inputRemark" className="form-label">
               Remark
@@ -104,15 +98,28 @@ const AddAssets = () => {
             <input
               type="text"
               className="form-control rounded-0"
-              id="inputRemark"
+              id="remark"
               placeholder="Enter Remark"
-              value={asset.remark}
-              onChange={(e) => setAsset({ ...asset, remark: e.target.value })}
+              value={assests.remark}
+              onChange={(e) => setassests({ ...assests, remark: e.target.value })}
+            />
+          </div>
+          <div className="col-12">
+            <label htmlFor="inputAId" className="form-label">
+              assests ID
+            </label>
+            <input
+              type="text"
+              className="form-control rounded-0"
+              id="aId"
+              placeholder="Enter assests ID"
+              value={assests.aId}
+              onChange={(e) => setassests({ ...assests, aId: e.target.value })}
             />
           </div>
           <div className="col-12">
             <button type="submit" className="btn btn-primary w-100">
-              Add Asset
+              Add assests
             </button>
           </div>
         </form>
@@ -121,4 +128,4 @@ const AddAssets = () => {
   );
 };
 
-export default AddAssets;
+export default AddAssests;

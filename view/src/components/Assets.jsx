@@ -9,7 +9,7 @@ const Assets = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/assets")
+      .get("http://localhost:3000/assets/add")
       .then((result) => {
         if (result.data.Status) {
           setEmployee(result.data.Result);
@@ -20,7 +20,7 @@ const Assets = () => {
       .catch((err) => console.log(err));
   }, []);
   const handleDelete = (id) => {
-    axios.delete('http://localhost:3000/auth/delete_employee/'+id)
+    axios.delete('http://localhost:3000/assests/3'+id)
     .then(result => {
         if(result.data.Status) {
             window.location.reload()
@@ -34,7 +34,7 @@ const Assets = () => {
       <div className="d-flex justify-content-center">
         <h3>Assets List</h3>
       </div>
-      <Link to="/dashboard/add_assets" className="btn btn-success">
+      <Link to="/dashboard/add_assests" className="btn btn-success">
         Add Assets
       </Link>
       <div className="mt-3">
@@ -42,7 +42,7 @@ const Assets = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Category</th>
+              <th>Department</th>
               <th>Status</th>
               <th>Remark</th>
               <th>Action</th>
@@ -57,7 +57,7 @@ const Assets = () => {
                 <td>{e.remark}</td>
                 <td>
                   <Link
-                    to={`/dashboard/edit_employee/` + e.id}
+                    to={`/dashboard/edit_assets/` + e.id}
                     className="btn btn-info btn-sm me-2"
                   >
                     Edit
