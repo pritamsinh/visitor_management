@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import QRCode from 'qrcode.react';
 const Visitors = () => {
   const [Visitors, setVisitors] = useState([]);
   const navigate = useNavigate()
@@ -32,8 +32,7 @@ const Visitors = () => {
               <th>Name</th>
               <th>Email</th>       
               <th>Phone</th>
-              <th>Purpose</th>
-              
+              <th>Purpose</th>              
               </tr>
           </thead>
           <tbody>
@@ -47,6 +46,8 @@ const Visitors = () => {
             ))}
           </tbody>
         </table>
+              <QRCode value={JSON.stringify(formData)} />
+
       </div>
     </div>
   );

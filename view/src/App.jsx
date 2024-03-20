@@ -12,7 +12,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Assets from './components/Assets'
 import Visitors from './components/Visitors'
 import Signup from './components/Signup'
-import AddAssests from './components/AddAssests'
+import AddAssest from './components/AddAssest'
+
+
+
 
 
 function App() {
@@ -31,7 +34,7 @@ function App() {
       <Route path='/dashboard/profile' element={<Profile/>}></Route>
       
       
-      <Route path='/dashboard/add_assests' element={<AddAssests/>}></Route>
+      <Route path='/dashboard/add_assest' element={<AddAssest/>}></Route>
       <Route path='/dashboard/assets' element={<Assets/>}></Route>
       <Route path='/dashboard/visitors' element={<Visitors/>}></Route>
     </Routes>

@@ -5,6 +5,7 @@ import './index.css'
 import axios from "axios";
 
 axios.defaults.withCredentials = true; 
+axios.defaults.baseURL = "localhost:3000/";
 axios.defaults.headers = {
   'Cache-Control': 'no-cache',
   'Pragma': 'no-cache',

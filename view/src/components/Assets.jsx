@@ -9,13 +9,17 @@ const Assets = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/assets/add")
-      .then((result) => {
-        if (result.data.Status) {
-          setEmployee(result.data.Result);
-        } else {
-          alert(result.data.Error);
-        }
+      .get("http://localhost:3000/assets")
+      
+        .then(result => {
+          console.log("Server Response:", result.data); 
+          if(result.data.message === 'Authentication successful!!') {
+              localStorage.setItem("valid", true);
+              navigate('/dashboard');
+          } else {
+              console.error("Something went wrong:", result.data.message);
+              // Optionally, you can handle other error cases here
+          }
       })
       .catch((err) => console.log(err));
   }, []);
