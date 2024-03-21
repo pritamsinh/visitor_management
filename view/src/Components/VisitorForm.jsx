@@ -16,7 +16,7 @@ function VisitorForm() {
     async function submitForm(e) {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:4000/visitor', visitorData);
+            await axios.post('http://localhost:3000/visitor', visitorData);
             alert("Your data has been submitted successfully!");
             window.location.reload();
         } catch (err) {

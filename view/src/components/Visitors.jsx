@@ -1,53 +1,48 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import QRCode from 'qrcode.react';
+
 const Visitors = () => {
-  const [Visitors, setVisitors] = useState([]);
-  const navigate = useNavigate()
+  const [visitors, setVisitors] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/visitor/5")
-      .then((result) => {
-        if (result.data.Status) {
-          setEmployee(result.data.Result);
-        } else {
-          alert(result.data.Error);
-        }
-      })
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/visitor");
+        setVisitors(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
-   
+
   return (
     <div className="px-5 mt-3">
       <div className="d-flex justify-content-center">
-        <h3>Visitors List</h3>
+        <h2>Visitors List</h2>
       </div>
-        <div className="mt-3">
+      <div className="mt-3">
         <table className="table">
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>       
+              <th>Email</th>
               <th>Phone</th>
-              <th>Purpose</th>              
-              </tr>
+              <th>Purpose</th>
+            </tr>
           </thead>
           <tbody>
-            {Visitors.map((v) => (
-              <tr>
-                <td>{v.name}</td>
-                <td>{v.email}</td>
-                <td>{v.phone}</td>
-                <td>{v.purpose}</td>
-                 </tr>
+            {visitors.map((visitor, index) => (
+              <tr key={index}>
+                <td>{visitor.name}</td>
+                <td>{visitor.email}</td>
+                <td>{visitor.phone}</td>
+                <td>{visitor.purpose}</td>
+              </tr>
             ))}
           </tbody>
         </table>
-              <QRCode value={JSON.stringify(formData)} />
-
       </div>
     </div>
   );

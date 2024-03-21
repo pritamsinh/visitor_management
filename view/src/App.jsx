@@ -13,9 +13,7 @@ import Assets from './components/Assets'
 import Visitors from './components/Visitors'
 import Signup from './components/Signup'
 import AddAssest from './components/AddAssest'
-
-
-
+import VisitorForm from './components/VisitorForm'
 
 
 function App() {
@@ -28,11 +26,11 @@ function App() {
     <Route path='/login' element={<Login/>}></Route>
     <Route path='/signup' element={<Signup/>}></Route>
       <Route path='/dashboard' element={<Dashboard/>}></Route>
-      <Route path='' element={<Home/>}></Route>
+      <Route path='/home' element={<Home/>}></Route>
       <Route path='/dashboard/employee' element={<Employee/>}></Route>
       
       <Route path='/dashboard/profile' element={<Profile/>}></Route>
-      
+      <Route path='/visitorform' element={<VisitorForm/>}></Route>
       
       <Route path='/dashboard/add_assest' element={<AddAssest/>}></Route>
       <Route path='/dashboard/assets' element={<Assets/>}></Route>
