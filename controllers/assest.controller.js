@@ -3,6 +3,8 @@ const Validator = require('fastest-validator');
 //
 
 function add (req, res){
+    
+    
     const assest = {
         name: req.body.name,
         department: req.body.department,
@@ -18,6 +20,7 @@ function add (req, res){
     }
     const v = new Validator();
     const validationResponse = v.validate(assest, schema);
+    console.log(validationResponse);
     if (validationResponse !== true) {
         return res.status(400).json({
             message: "Validation failed!!!",
