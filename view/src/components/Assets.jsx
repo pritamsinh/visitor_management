@@ -38,7 +38,7 @@ const Assets = () => {
       <div className="d-flex justify-content-center">
         <h3>Assets List</h3>
       </div>
-      <Link to="/dashboard/add_assests" className="btn btn-success">
+      <Link to="/dashboard/add_assest" className="btn btn-success">
         Add Assets
       </Link>
       <div className="mt-3">

@@ -31,12 +31,10 @@ const AddAssest = () => {
       console.log("Server Response:", result.data); 
       if(result.data.message === 'assest created successfully') {
           console.log("Asset created successfully!");
-          // Optionally, you can perform any actions here for successful asset creation
           localStorage.setItem("valid", true);
           navigate('/assets');
       } else {
           console.error("Something went wrong:", result.data.message);
-          // Optionally, you can handle other error cases here
       }
     })
     .catch((err) => {
@@ -119,7 +117,7 @@ const AddAssest = () => {
           </div>
           <div className="col-12">
             <button type="submit" className="btn btn-primary w-100">
-              Add Assests
+              Add Assest
             </button>
           </div>
         </form>
