@@ -1,5 +1,5 @@
 const models = require('../models')
-
+const Validator = require('fastest-validator');
 //
 
 function add (req, res){
@@ -10,6 +10,21 @@ function add (req, res){
         remark: req.body.remark,
         aId: req.body.aid
     }
+    const schema = {
+        name: { type: "string", optional: false, max: "100" },
+        department: { type: "string", optional: false, max: "100" },
+        status: { type: "string", optional: false },
+        remark: { type: "string", optional: false, max: "500" },
+    }
+    const v = new Validator();
+    const validationResponse = v.validate(assest, schema);
+    if (validationResponse !== true) {
+        return res.status(400).json({
+            message: "Validation failed!!!",
+            errors: validationResponse
+        })
+    }
+
     models.Assests.create(assest).then(result => {
         res.status(201).json({
             message: "assest created sucessfully",
