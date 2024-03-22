@@ -10,40 +10,38 @@ const AddAssest = () => {
     remark: "",
     aId: "" 
   });
-  const navigate = useNavigate();
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     // Logging form data before sending the POST request
     console.log("Form Data Before Submission:", assest);
-
-    const formData = new FormData();
-    formData.append("name", assest.name);
-    formData.append("department", assest.department);
-    formData.append("status", assest.status);   
-    formData.append("remark", assest.remark);
-    formData.append("aId", assest.aId);
-
+  
+    const formData = {
+      "name": assest.name,
+      "department": assest.department,
+      "status": assest.status,
+      "remark": assest.remark,
+      "aId": assest.aId
+    }
+  
     axios.post("http://localhost:3000/assests/add", formData)
-    .then(result => {
-      console.log("Server Response:", result.data); 
-      if(result.data.message === 'assest created successfully') {
+      .then(result => {
+        console.log("Server Response:", result.data); 
+        if(result.data.message === 'assest created successfully') {
           console.log("Asset created successfully!");
           localStorage.setItem("valid", true);
+          alert("Asset created successfully!");
           navigate('/assets');
-      } else {
+        } else {
           console.error("Something went wrong:", result.data.message);
-      }
-    })
-    .catch((err) => {
-      console.error("An error occurred while processing your request:", err);
-      // Handle the error gracefully, display a message to the user, etc.
-    });
-  
+        }
+      })
+      .catch((err) => {
+        console.error("An error occurred while processing your request:", err);
+        // Handle the error gracefully, display a message to the user, etc.
+      });
   };
-
+  
   return (
     <div className="d-flex justify-content-center align-items-center mt-3">
       <div className="p-3 rounded w-50 border">
