@@ -2,18 +2,18 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import Login from './components/Login'
-import Dashboard from './components/Dashboard'
-import Home from './components/Home'
-import Employee from './components/Employee'
+import Login from './Components/Login'
+import Dashboard from './Components/Dashboard'
+import Home from './Components/Home'
+import Employee from './Components/Employee'
 
-import Profile from './components/Profile'
+import Profile from './Components/Profile'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Assets from './components/Assets'
-import Visitors from './components/Visitors'
-import Signup from './components/Signup'
-import AddAssest from './components/AddAssest'
-import VisitorForm from './components/VisitorForm'
+import Assets from './Components/Assets'
+import Visitors from './Components/Visitors'
+import Signup from './Components/Signup'
+import AddAssest from './Components/AddAssest'
+import VisitorForm from './Components/VisitorForm'
 
 
 function App() {
