@@ -45,6 +45,7 @@ function signUp(req, res) {
                             .catch((error) => {
                                 res.status(500).json({
                                     message: "Something went wrong!",
+                                    error:error
                                 });
                             });
                     });
@@ -106,8 +107,20 @@ function login(req, res) {
     })
 }
 
+//Fetch all employees
+function fetchEmployee(req, res) {
+    models.Employee.findAll().then(result => {
+        res.status(200).json(result);
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!!!"
+        })
+    })
+}
+
 module.exports = {
+    fetchEmployee: fetchEmployee,
     signUp: signUp,
-    login: login
+    login: login,
 };
 
