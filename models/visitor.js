@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   Visitor.init({
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    phone: DataTypes.INTEGER,
+    phone: DataTypes.STRING,
     purpose: DataTypes.TEXT
   }, {
     sequelize,

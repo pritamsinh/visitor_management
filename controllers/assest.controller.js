@@ -1,5 +1,5 @@
 const models = require('../models')
-
+const Validator = require('fastest-validator');
 //
 
 function add (req, res){

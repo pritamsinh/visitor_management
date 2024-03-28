@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
-
+ 
 const Dashboard = () => {
   const anvigate = useNavigate()
   axios.defaults.withCredentials = true
@@ -50,15 +50,6 @@ const Dashboard = () => {
                   <span className="ms-2 d-none d-sm-inline">
                     Manage Employees
                   </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/category"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-columns ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Category</span>
                 </Link>
               </li>
               <li className="w-100">

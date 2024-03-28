@@ -50,6 +50,7 @@ function fetchVisitor(req, res) {
     })
 }
 
+
 //Updating a visitor data
 function update(req, res) {
     const id = req.params.id;  //Fetching visitor id from the url
@@ -64,7 +65,7 @@ function update(req, res) {
     const schema = {
         name: { type: "string", optional: false, max: "100" },
         email: { type: "string", optional: false, max: "100" },
-        phone: { type: "number", optional: true },
+        phone: { type: "string", optional: true, max:"12", min:"10" },
         purpose: { type: "string", optional: false, max: "500" },
     }
     const v = new Validator();
@@ -88,7 +89,6 @@ function update(req, res) {
         });
     })
 }
-
 //Delete visitor
 function destroy(req, res) {
     const id = req.params.id;
@@ -96,7 +96,7 @@ function destroy(req, res) {
     models.Visitor.destroy({ where: { id: id } }).then(result => {
         res.status(200).json({
             message: "Visitor deleted successfully",
-            post: result
+            visitor: result
         })
     }).catch(error => {
         res.status(500).json({
